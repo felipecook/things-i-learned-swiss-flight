@@ -60,6 +60,12 @@ const rockPaperScissorsDiv = document.createElement('div');
 rockPaperScissorsDiv.classList.add('rpsGameContainer');
 mainPage.appendChild(rockPaperScissorsDiv);
 
+// Adds a header to the RPS game
+const headerForRockPaperScissors = document.createElement('h3');
+headerForRockPaperScissors.textContent = 'Play Rock Paper Scissors';
+headerForRockPaperScissors.classList.add('headers');
+rockPaperScissorsDiv.appendChild(headerForRockPaperScissors);
+
 // then the player div to hold 3 buttons
 const playerSelectionDiv = document.createElement('div');
 playerSelectionDiv.classList.add('playerRPSSelectionDiv');
@@ -105,9 +111,11 @@ const computerRPSSelectionDisplay = document.createElement('div');
 computerRPSSelectionDisplay.id = 'computerRPSSelectionDisplay';
 rPSScoreAndCompSelectionDiv.appendChild(computerRPSSelectionDisplay);
 
+// These two variables track the wins on both sides
+let playerRPSWins = 0;
+let computerRPSWins = 0;
 
-
-
+// These 4 functions run the RPS game for us. 
 function playRPSRound(computerSelection, playerSelection) {
   switch (computerSelection) {
     case "rock":
@@ -189,22 +197,20 @@ function rPSgame(playerSelection) {
   computerRPSSelectionDisplay.textContent = `Computer selected ${computerSelection}`;
   const winOrLose = playRPSRound(computerSelection, playerSelection);
   if (winOrLose == "You win!") {
-    console.log(playerWins);
-    playerWins++;
-
+    playerRPSWins++;
   } else if (winOrLose == "You lose!") {
-    computerWins++;
+    computerRPSWins++;
   }
 
-  playerRPSScoreDisplay.textContent = `You have won ${playerWins} games.`;
-  computerRPSScoreDisplay.textContent = `The computer has won ${computerWins} games.`;
+  playerRPSScoreDisplay.textContent = `You have won ${playerRPSWins} games.`;
+  computerRPSScoreDisplay.textContent = `The computer has won ${computerRPSWins} games.`;
 
   if (playerWins == 5) {
-    alert(`You won ${playerWins} games, the majority, nice job!`);
+    alert(`You won ${playerRPSWins} games, the majority, nice job!`);
   } 
 
   if (computerWins == 5) {
-    alert(`The computer won ${computerWins} games, the majority, too bad!`);
+    alert(`The computer won ${computerRPSWins} games, the majority, too bad!`);
   }
 
 }

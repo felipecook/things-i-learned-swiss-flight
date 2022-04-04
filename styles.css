@@ -71,7 +71,7 @@ body {
   background-color: lightgray;
   width: 100%;
   height: auto;
-  border: solid;
+  border: 0.5px solid;
 }
 
 .playerRPSSelectionDiv {
@@ -91,4 +91,8 @@ body {
 
 .rpsButton {
 
+}
+
+.headers {
+  text-align: center;
 }
