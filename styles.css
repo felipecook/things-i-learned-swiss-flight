@@ -71,15 +71,22 @@ body {
   background-color: lightgray;
   width: 100%;
   height: auto;
-
+  border: solid;
 }
 
-.playerSelectionDiv {
+.playerRPSSelectionDiv {
   display: flex;
   flex: 1;
   justify-content: space-between;
   align-items: center;
 
+}
+
+.rPSScoreAndCompSelectionDiv {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .rpsButton {

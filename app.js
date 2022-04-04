@@ -62,12 +62,18 @@ mainPage.appendChild(rockPaperScissorsDiv);
 
 // then the player div to hold 3 buttons
 const playerSelectionDiv = document.createElement('div');
-playerSelectionDiv.classList.add('playerSelectionDiv');
+playerSelectionDiv.classList.add('playerRPSSelectionDiv');
 rockPaperScissorsDiv.appendChild(playerSelectionDiv);
+
+//this holds the RPS Score and Computer Selection
+const rPSScoreAndCompSelectionDiv = document.createElement('div');
+rPSScoreAndCompSelectionDiv.classList = 'rPSScoreAndCompSelectionDiv';
+rockPaperScissorsDiv.appendChild(rPSScoreAndCompSelectionDiv);
 
 // lets create the three buttons here
 //ROCK
 const rpsRockButton = document.createElement('button');
+rpsRockButton.id = 'rock';
 rpsRockButton.classList.add('rpsButton');
 rpsRockButton.textContent = 'ROCK';
 playerSelectionDiv.appendChild(rpsRockButton);
@@ -75,14 +81,32 @@ playerSelectionDiv.appendChild(rpsRockButton);
 //PAPER
 const rpsPaperButton = document.createElement('button');
 rpsPaperButton.classList.add('rpsButton');
+rpsPaperButton.id = 'paper';
 rpsPaperButton.textContent = 'PAPER';
 playerSelectionDiv.appendChild(rpsPaperButton);
 
 //SCISSOR
 const rpsScissorsButton = document.createElement('button');
 rpsScissorsButton.classList.add('rpsButton');
+rpsScissorsButton.id = 'scissors';
 rpsScissorsButton.textContent = 'SCISSORS';
 playerSelectionDiv.appendChild(rpsScissorsButton);
+
+// Grabs the Score displays and the Computer Selection Display and Appends to the rPSScoreAndCompSelectionDiv
+const playerRPSScoreDisplay = document.createElement('div');
+playerRPSScoreDisplay.id = 'playerRPSScoreDisplay';
+rPSScoreAndCompSelectionDiv.appendChild(playerRPSScoreDisplay);
+
+const computerRPSScoreDisplay = document.createElement('div');
+computerRPSScoreDisplay.id = 'computerRPSScoreDisplay';
+rPSScoreAndCompSelectionDiv.appendChild(computerRPSScoreDisplay);
+
+const computerRPSSelectionDisplay = document.createElement('div');
+computerRPSSelectionDisplay.id = 'computerRPSSelectionDisplay';
+rPSScoreAndCompSelectionDiv.appendChild(computerRPSSelectionDisplay);
+
+
+
 
 function playRPSRound(computerSelection, playerSelection) {
   switch (computerSelection) {
@@ -147,7 +171,7 @@ rPSButtons.forEach((button) => {
 
   button.addEventListener('click', () => {
     console.log(button.id);
-    game(button.id);
+    rPSgame(button.id);
     button.classList.add('playing');
   });
 });
@@ -159,30 +183,21 @@ function removeTransition(e){
   this.classList.remove('playing');
 }
 
-function game(playerSelection) {
-  
-
-
-  
+function rPSgame(playerSelection) {
 
   const computerSelection = computerRPSPlay();
-  computerSelectionDisplay.textContent = `Computer selected ${computerSelection}`;
+  computerRPSSelectionDisplay.textContent = `Computer selected ${computerSelection}`;
   const winOrLose = playRPSRound(computerSelection, playerSelection);
   if (winOrLose == "You win!") {
     console.log(playerWins);
     playerWins++;
-    
 
   } else if (winOrLose == "You lose!") {
     computerWins++;
   }
 
-  playerScoreDisplay.textContent = `You have won ${playerWins} games.`;
-  computerScoreDisplay.textContent = `The computer has won ${computerWins} games.`;
-
-  // console.log(playRound(computerSelection, playerSelection));
-
-
+  playerRPSScoreDisplay.textContent = `You have won ${playerWins} games.`;
+  computerRPSScoreDisplay.textContent = `The computer has won ${computerWins} games.`;
 
   if (playerWins == 5) {
     alert(`You won ${playerWins} games, the majority, nice job!`);
@@ -191,7 +206,6 @@ function game(playerSelection) {
   if (computerWins == 5) {
     alert(`The computer won ${computerWins} games, the majority, too bad!`);
   }
-
 
 }
 
