@@ -84,9 +84,116 @@ rpsScissorsButton.classList.add('rpsButton');
 rpsScissorsButton.textContent = 'SCISSORS';
 playerSelectionDiv.appendChild(rpsScissorsButton);
 
+function playRPSRound(computerSelection, playerSelection) {
+  switch (computerSelection) {
+    case "rock":
+      if (playerSelection == "rock") {
+        console.log("You tie!");
+        return "You tie!";
+      } else if (playerSelection == "paper") {
+        console.log("You win!");
+        return "You win!";
+      } else if (playerSelection == "scissors") {
+        console.log("You lose!");
+        return "You lose!";
+      } else {
+        console.log("invalid user entry!")
+        return "You fucked up!"
+      }
+    case "paper":
+      if (playerSelection == "rock") {
+        console.log("You lose!");
+        return "You lose!";
+      } else if (playerSelection == "paper") {
+        console.log("You tie!");
+        return "You tie!";
+      } else if (playerSelection == "scissors") {
+        console.log("You win!");
+        return "You win!";
+      } else {
+        console.log("invalid user entry!")
+        return "You fucked up!"
+      }
+    case "scissors":
+      if (playerSelection == "rock") {
+        console.log("You win!");
+        return "You win!";
+      } else if (playerSelection == "paper") {
+        console.log("You lose!");
+        return "You lose!";
+      } else if (playerSelection == "scissors") {
+        console.log("You tie!");
+        return "You tie!";
+      } else {
+        console.log("invalid user entry!")
+        return "You fucked up!"
+      }
+    default:
+      console.log("invalid user entry!")
+      return "You fucked up!"
+  }
+
+}
+
+function computerRPSPlay() {
+  const arr = ["rock", "paper", "scissors"];
+  let choice = Math.floor(Math.random() * (3 - 0) + 0);
+  console.log(arr[choice]);
+  return arr[choice];
+}
+
+const rPSButtons = document.querySelectorAll('.rpsButton');
+rPSButtons.forEach((button) => {
+
+  button.addEventListener('click', () => {
+    console.log(button.id);
+    game(button.id);
+    button.classList.add('playing');
+  });
+});
+
+function removeTransition(e){
+  console.log(e);
+  if(e.propertyName != 'transform') return;
+
+  this.classList.remove('playing');
+}
+
+function game(playerSelection) {
+  
+
+
+  
+
+  const computerSelection = computerRPSPlay();
+  computerSelectionDisplay.textContent = `Computer selected ${computerSelection}`;
+  const winOrLose = playRPSRound(computerSelection, playerSelection);
+  if (winOrLose == "You win!") {
+    console.log(playerWins);
+    playerWins++;
+    
+
+  } else if (winOrLose == "You lose!") {
+    computerWins++;
+  }
+
+  playerScoreDisplay.textContent = `You have won ${playerWins} games.`;
+  computerScoreDisplay.textContent = `The computer has won ${computerWins} games.`;
+
+  // console.log(playRound(computerSelection, playerSelection));
 
 
 
+  if (playerWins == 5) {
+    alert(`You won ${playerWins} games, the majority, nice job!`);
+  } 
+
+  if (computerWins == 5) {
+    alert(`The computer won ${computerWins} games, the majority, too bad!`);
+  }
+
+
+}
 
 
 
