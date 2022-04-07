@@ -170,7 +170,6 @@ function playRPSRound(computerSelection, playerSelection) {
 function computerRPSPlay() {
   const arr = ["rock", "paper", "scissors"];
   let choice = Math.floor(Math.random() * (3 - 0) + 0);
-  console.log(arr[choice]);
   return arr[choice];
 }
 
@@ -205,11 +204,11 @@ function rPSgame(playerSelection) {
   playerRPSScoreDisplay.textContent = `You have won ${playerRPSWins} games.`;
   computerRPSScoreDisplay.textContent = `The computer has won ${computerRPSWins} games.`;
 
-  if (playerWins == 5) {
+  if (playerRPSWins == 5) {
     alert(`You won ${playerRPSWins} games, the majority, nice job!`);
   } 
 
-  if (computerWins == 5) {
+  if (computerRPSWins == 5) {
     alert(`The computer won ${computerRPSWins} games, the majority, too bad!`);
   }
 
